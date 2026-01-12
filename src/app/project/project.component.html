@@ -1,0 +1,68 @@
+
+<!-- PROJECTS -->
+<section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800/50"
+         data-aos="fade-up"
+         [attr.data-aos-delay]="100">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-12 text-center">{{ title | translate }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      @for (item of projects; let i = $index; track item) {
+        <div data-aos="fade-up"
+             [attr.data-aos-delay]="i * 100"
+             class="group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden
+            shadow-md hover:shadow-2xl transition-all duration-300
+            hover:-translate-y-2 cursor-pointer border-2"
+             [ngClass]="{
+            'border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.2)] dark:shadow-[0_0_20px_rgba(59,130,246,0.1)]': item.featured,
+            'border-transparent hover:border-blue-500/50': !item.featured
+          }"
+             [routerLink]="item.projectUrl">
+
+          @if (item.featured) {
+            <div class="absolute top-4 right-4 z-10">
+              <span
+                class="flex items-center gap-1 px-3 py-1 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg animate-pulse">
+                <span>★</span> {{ 'featured' | translate }}
+              </span>
+            </div>
+          }
+
+          <div class="h-48 bg-gray-300 dark:bg-gray-700 overflow-hidden relative">
+            @if (item.featured) {
+              <div class="absolute inset-0 bg-blue-600/10 z-0"></div>
+            }
+
+            <img [src]="item.imageUrl" [alt]="item.name"
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+
+          <div class="p-6 relative">
+            <h3
+              class="font-bold text-xl mb-2 flex items-center gap-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {{ item.name | translate }}
+              @if (item.featured) {
+                <span class="text-blue-500 text-sm">✦</span>
+              }
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+              {{ item.description | translate }}
+            </p>
+
+            <div
+              class="flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
+              @for (tech of item.skills; track tech) {
+                <span
+                  class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs rounded-full whitespace-nowrap border border-transparent group-hover:border-blue-300/30 transition-all">
+                {{ tech }}
+              </span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+<!-- PROJECTS -->

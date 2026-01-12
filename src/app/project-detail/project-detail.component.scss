@@ -1,0 +1,21 @@
+///* Thùng chứa các case study */
+//.case-study-container {
+//  height: 100vh; /* Bắt buộc để snap hoạt động tốt trên màn hình */
+//  overflow-y: auto;
+//  scroll-snap-type: y mandatory; /* Ép buộc cuộn theo chiều dọc và dừng đúng điểm */
+//  scroll-behavior: smooth;
+//  scrollbar-width: none; /* Ẩn scrollbar trên Firefox */
+//}
+//
+//.case-study-container::-webkit-scrollbar {
+//  display: none; /* Ẩn scrollbar trên Chrome/Safari */
+//}
+//
+///* Mỗi thẻ khó khăn */
+//.case-study-card {
+//  scroll-snap-align: center; /* Tự động căn giữa thẻ vào màn hình khi dừng */
+//  scroll-snap-stop: always;  /* Lăn chuột nhẹ cũng sẽ dừng lại ở thẻ tiếp theo, không bị trôi quá nhanh */
+//  min-height: 80vh; /* Đảm bảo mỗi phần chiếm đủ không gian để tập trung */
+//  display: flex;
+//  align-items: center;
+//}

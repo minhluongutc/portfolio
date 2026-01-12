@@ -1,0 +1,63 @@
+<section class="py-20 bg-white dark:bg-gray-900">
+  <div class="container mx-auto max-w-4xl px-6">
+
+    <div class="mb-16 mt-8 text-center" data-aos="fade-up">
+      <h1 class="text-4xl font-extrabold mb-4">{{ selectedProject.name | translate }}</h1>
+      <p class="text-gray-500 text-lg">{{ selectedProject.overview | translate }}</p>
+    </div>
+
+    <div class="space-y-16">
+      <div *ngFor="let item of selectedProject.caseStudies; let i = index"
+           class="relative group"
+           data-aos="fade-up">
+
+        <span class="absolute -top-10 -left-6 text-9xl font-black text-gray-100 dark:text-gray-800/50 select-none -z-10">
+          0{{ i + 1 }}
+        </span>
+
+        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 dark:border-gray-700">
+          <div class="grid grid-cols-1 gap-8">
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 shrink-0 bg-red-100 dark:bg-red-900/30 text-red-600 flex items-center justify-center rounded-lg font-bold">!</div>
+              <div>
+                <h4 class="text-sm font-bold text-red-500 uppercase tracking-widest mb-1">{{ 'challenge' | translate }}</h4>
+                <p class="text-xl text-gray-900 dark:text-white" [innerHTML]="item.issue | translate"></p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 ml-2 border-l-2 border-dashed border-gray-300 dark:border-gray-600 pl-8 py-4">
+              <div class="w-10 h-10 shrink-0 bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center rounded-lg font-bold">✓</div>
+              <div>
+                <h4 class="text-sm font-bold text-blue-500 uppercase tracking-widest mb-1">{{ 'solution' | translate }}</h4>
+                <p class="text-gray-700 dark:text-gray-300" [innerHTML]="item.solution | translate"></p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 shrink-0 bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center rounded-lg font-bold">★</div>
+              <div class="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl w-full">
+                <h4 class="text-sm font-bold text-green-600 uppercase tracking-widest mb-1">{{ 'result' | translate}}</h4>
+                <p class="text-gray-900 dark:text-gray-200 font-medium" [innerHTML]="item.benefit | translate"></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 pt-10 border-t dark:border-gray-800 text-center">
+      <h4 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Công nghệ cốt lõi trong dự án</h4>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span *ngFor="let tech of selectedProject.skills"
+              class="px-5 py-2 bg-white dark:bg-gray-800 shadow-md rounded-full text-sm font-bold border dark:border-gray-700">
+          {{ tech }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<app-project [projects]="projectOthers" title="project_others"></app-project>
