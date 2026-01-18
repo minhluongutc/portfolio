@@ -1,5 +1,5 @@
 import {Component, Injector} from '@angular/core';
-import {Router, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {TranslatePipe} from "./pipe/translate.pipe";
 import {BaseComponent} from "./base.component";
 import {NgClass} from "@angular/common";
@@ -11,7 +11,8 @@ import {NgClass} from "@angular/common";
   imports: [
     RouterOutlet,
     TranslatePipe,
-    NgClass
+    NgClass,
+    RouterLink
   ],
   styleUrl: './app.component.scss'
 })
