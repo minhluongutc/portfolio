@@ -1,42 +1,37 @@
-import {Component, Injector, OnInit, OnDestroy} from "@angular/core";
-import {Lang} from "./data/data.constant";
+import {Component, Injector, OnInit} from "@angular/core";
+import {Lang, LANG_KEY} from "./data/data.constant";
 import AOS from "aos";
 import {LanguageService} from "./services/language.service";
-import {Subscription} from "rxjs";
+
 @Component({
   template: `
     <ng-content></ng-content>`,
   imports: [],
   standalone: true
 })
-
-export class BaseComponent implements OnInit, OnDestroy {
-  isDarkMode: boolean;
+export class BaseComponent implements OnInit {
+  isDarkMode = true;
   DARK_MODE_KEY: string = "isDarkMode";
   lang: Lang;
 
   protected languageService: LanguageService;
-  private langSub?: Subscription;
 
   constructor(private readonly injector: Injector
   ) {
     this.languageService = injector.get(LanguageService);
 
-    // initialize current language from the service
     this.lang = this.languageService.currentLang;
-    // keep local `lang` in sync when language changes elsewhere
-    this.langSub = this.languageService.lang$.subscribe(l => {
-      this.lang = l;
-    });
+    // // Initialize language
+    // if (!localStorage.getItem(LANG_KEY)) {
+    //   localStorage.setItem(LANG_KEY, JSON.stringify('vi'));
+    // }
+    // this.lang = JSON.parse(<string>localStorage.getItem(LANG_KEY));
 
     // Initialize dark mode
-    const darkModeStored = localStorage.getItem(this.DARK_MODE_KEY);
-    this.isDarkMode = darkModeStored ? JSON.parse(darkModeStored) : true;
-    if (this.isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    if (!localStorage.getItem(this.DARK_MODE_KEY)) {
+      localStorage.setItem(this.DARK_MODE_KEY, JSON.stringify(false));
     }
+    this.isDarkMode = JSON.parse(localStorage.getItem(this.DARK_MODE_KEY) || 'false');
   }
 
   ngOnInit(): void {
@@ -50,8 +45,9 @@ export class BaseComponent implements OnInit, OnDestroy {
   toggleLang() {
     const lang: Lang = this.languageService.currentLang === 'vi' ? 'en' : 'vi';
     this.languageService.setLanguage(lang);
-    // update local value so UI updates without a full page reload
-    this.lang = lang;
+
+    // reload page to apply language change
+    window.location.reload();
   }
 
   toggleDarkMode() {
@@ -60,7 +56,6 @@ export class BaseComponent implements OnInit, OnDestroy {
     localStorage.setItem(this.DARK_MODE_KEY, JSON.stringify(this.isDarkMode));
   }
 
-  ngOnDestroy(): void {
-    this.langSub?.unsubscribe();
-  }
+
 }
+

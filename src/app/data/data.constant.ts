@@ -1,12 +1,12 @@
 export const PERSONAL_INFO = [
   {label: 'name_key', value: 'name_value', icon: '👤'},
   {label: 'date_of_birth', value: '30/11/2002', icon: '🎂'},
-  {label: 'email', value: 'nguyenminhluong.work@gmail.com', icon: '📧'},
+  {label: 'email', value: 'nguyenminhluong.work@gmail.com', icon: '📧', isLink: true, tooltip: 'email_tooltip'},
   {label: 'phone_number_key', value: '0345571823', icon: '📱'},
   {label: 'address_key', value: 'address_value', icon: '📍'},
   {label: 'education_level_key', value: 'education_level_value', icon: '🎓'},
   {label: 'english_key', value: 'english_value', icon: '🌐'},
-  {label: 'linkedin', value: 'www.linkedin.com/in/nguyen-minh-luong', icon: '🔗'},
+  {label: 'linkedin', value: 'https://www.linkedin.com/in/nguyen-minh-luong', icon: '🔗', isLink: true, tooltip: 'linkedin_tooltip'},
 ]
 
 export const EXPERIENCE = [
@@ -127,3 +127,4 @@ export const PROJECTS = [
 ]
 
 export const LANG_KEY: string = "language";
+export type Lang = 'vi' | 'en';
