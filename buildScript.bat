@@ -1,4 +1,5 @@
 git pull origin build
+git pull origin main
 
 ng build --output-path docs
 
