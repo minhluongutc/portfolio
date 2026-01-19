@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {TranslatePipe} from "../../pipe/translate.pipe";
-import {NgClass} from "@angular/common";
+import {NgClass, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
 
 @Component({
@@ -9,7 +9,8 @@ import {RouterLink} from "@angular/router";
   imports: [
     TranslatePipe,
     NgClass,
-    RouterLink
+    RouterLink,
+    NgOptimizedImage
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
