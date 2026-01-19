@@ -1,9 +1,9 @@
 import {Component, Injector, OnInit} from '@angular/core';
 import {CommonModule, NgForOf} from "@angular/common";
-import {BaseComponent} from "../base.component";
+import {BaseComponent} from "../../base.component";
 import {ActivatedRoute} from "@angular/router";
-import {PROJECTS} from "../data/data.constant";
-import {TranslatePipe} from "../pipe/translate.pipe";
+import {PROJECTS} from "../../data/data.constant";
+import {TranslatePipe} from "../../pipe/translate.pipe";
 import {ProjectComponent} from "../project/project.component";
 
 @Component({

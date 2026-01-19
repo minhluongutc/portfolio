@@ -1,0 +1,56 @@
+<!-- Overlay -->
+<div
+  *ngIf="visible"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+>
+  <!-- Modal -->
+  <div
+    class="w-full max-w-md rounded-xl bg-white p-6 shadow-xl
+           dark:bg-gray-800 dark:text-gray-100"
+  >
+    <h3 class="mb-4 text-lg font-semibold">
+      {{ 'redirect_confirmation' | translate }}
+    </h3>
+
+    <!-- Email -->
+    <p *ngIf="isEmail(); else linkTpl" class="mb-6 text-sm text-gray-700 dark:text-gray-300">
+      {{ 'email_tooltip' | translate }}
+      <span class="block mt-2 font-medium break-all text-blue-600 dark:text-blue-400">
+        {{ target }}
+      </span>
+    </p>
+
+    <!-- Link -->
+    <ng-template #linkTpl>
+      <p class="mb-6 text-sm text-gray-700 dark:text-gray-300">
+        {{ 'linkedin_tooltip' | translate }}
+        <span class="block mt-2 font-medium break-all text-blue-600 dark:text-blue-400">
+          {{ target }}
+        </span>
+      </p>
+    </ng-template>
+
+    <!-- Actions -->
+    <div class="flex justify-end gap-3">
+      <button
+        (click)="cancel()"
+        class="rounded-lg px-4 py-2 text-sm
+               bg-gray-200 text-gray-800
+               hover:bg-gray-300
+               dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+      >
+        Hủy
+      </button>
+
+      <button
+        (click)="confirm()"
+        class="rounded-lg px-4 py-2 text-sm font-medium
+               bg-blue-600 text-white
+               hover:bg-blue-700
+               dark:bg-blue-500 dark:hover:bg-blue-600"
+      >
+        Đồng ý
+      </button>
+    </div>
+  </div>
+</div>

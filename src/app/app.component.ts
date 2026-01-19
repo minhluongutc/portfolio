@@ -1,5 +1,5 @@
 import {Component, Injector} from '@angular/core';
-import {Router, RouterLink, RouterOutlet} from "@angular/router";
+import {Router, RouterOutlet} from "@angular/router";
 import {TranslatePipe} from "./pipe/translate.pipe";
 import {BaseComponent} from "./base.component";
 import {NgClass} from "@angular/common";
@@ -11,8 +11,7 @@ import {NgClass} from "@angular/common";
   imports: [
     RouterOutlet,
     TranslatePipe,
-    NgClass,
-    RouterLink
+    NgClass
   ],
   styleUrl: './app.component.scss'
 })
@@ -21,7 +20,7 @@ export class AppComponent extends BaseComponent {
 
   constructor(injector: Injector, private router: Router) {
     super(injector);
-    this.toggleDarkMode();
+    // this.toggleDarkMode();
   }
 
   toggleMenu() {
@@ -46,5 +45,18 @@ export class AppComponent extends BaseComponent {
         block: 'start'      // Optional: align the top of the element to the top of the viewport
       });
     }
+    this.isMenuOpen = false
   }
+
+  onClickHome() {
+    this.router.navigate(['/']).then(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth' // Optional: Adds smooth scrolling animation
+      });
+    });
+    this.isMenuOpen = false
+  }
+
 }
